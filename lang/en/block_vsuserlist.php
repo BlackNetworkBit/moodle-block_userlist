@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,16 +16,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Strings for component 'block_vsuserlist', language 'en'
  *
- * @package    block_vsuserlist
- * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   block_vsuserlist
+ * @copyright Daniel Neis <danielneis@gmail.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->version   = 2013011300;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2012112900;        // Requires this Moodle version
-$plugin->component = 'block_vsuserlist'; // Full name of the plugin (used for diagnostics)
-$plugin->cron = 300;
+$string['blockstring'] = 'Block string';
+$string['descconfig'] = 'Description of the config section';
+$string['descfoo'] = 'Config description';
+$string['headerconfig'] = 'Config section header';
+$string['labelfoo'] = 'Config label';
+$string['vsuserlist:addinstance'] = 'Add a vsuserlist block';
+$string['vsuserlist:myaddinstance'] = 'Add a vsuserlist block to my moodle';
+$string['pluginname'] = 'vsuserlist';
