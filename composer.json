@@ -1,11 +1,11 @@
 {
-    "name": "danielneis/moodle-block_vsuserlist",
-    "description": "A block template for Moodle based on http://docs.moodle.org/dev/Blocks",
+    "name": "vincent/01_vsuserlist",
+    "description": "Teilnehmerliste",
     "license": "GPLv3",
     "authors": [
         {
-            "name": "Daniel Neis Araujo",
-            "email": "danielneis@gmail.com"
+            "name": "Vincent Schneider",
+            "email": "vincent.schneider@gmx.net"
         }
     ],
     "type": "moodle-block",

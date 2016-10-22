@@ -24,11 +24,4 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$settings->add(new admin_setting_heading('sampleheader',
-                                         get_string('headerconfig', 'block_vsuserlist'),
-                                         get_string('descconfig', 'block_vsuserlist')));
-
-$settings->add(new admin_setting_configcheckbox('vsuserlist/foo',
-                                                get_string('labelfoo', 'block_vsuserlist'),
-                                                get_string('descfoo', 'block_vsuserlist'),
-                                                '0'));
+$settings->add(new admin_setting_heading('sampleheader'));

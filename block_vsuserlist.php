@@ -31,10 +31,15 @@ class block_vsuserlist extends block_base {
     }
 
     function get_content() {
-        global $CFG, $OUTPUT;
+        global $CFG, $USER,$DB;
 
         if ($this->content !== null) {
             return $this->content;
+        }
+        $course=$this->page->course;
+        $context= get_context_instance(CONTEXT_COURSE,$course->id);
+        if(!has_capability('moodle/course:manageactivities',$context)){
+        		return;
         }
         $this->content = new stdClass();
         $this->content->items = array();
@@ -45,7 +50,14 @@ class block_vsuserlist extends block_base {
             $this->content = '';
             return $this->content;
         }
-        $this->content->text = "Hier werde ich alles Anzeigen !";
+        $query = 'select u.id as id,firstname,lastname from mdl_role_assignments as a,mdl_user as u where contextid=' . $context->id .' and roleid=5 and a.userid=u.id;';
+		  $response=$DB->get_recordset_sql($query);	
+		  $this->content->text="";	  
+		  foreach($response as $result){
+		  		$this->content->text .= '<a href="/user/view.php?id=' . $result->id . '">' . htmlspecialchars($result->firstname) . "," . htmlspecialchars($result->lastname) . "</a></br>";
+		  }        
+        //user/view.php?id=3&course=2
+        //$this->content->text = "Hier werde ich alles Anzeigen !";
 		  /*
 
 
