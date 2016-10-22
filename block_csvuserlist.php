@@ -21,13 +21,13 @@
  * @copyright  Daniel Neis <danielneis@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
+error_reporting(true);
 defined('MOODLE_INTERNAL') || die();
 
-class block_vsuserlist extends block_base {
+class block_csvuserlist extends block_base {
 
     function init() {
-        $this->title = get_string('pluginname', 'block_vsuserlist');
+        $this->title = get_string('pluginname', 'block_csvuserlist');
     }
 
     function get_content() {
@@ -45,17 +45,11 @@ class block_vsuserlist extends block_base {
         $this->content->items = array();
         $this->content->icons = array();
         $this->content->footer = '';
-
         if (empty($this->instance)) {
             $this->content = '';
             return $this->content;
         }
-        $query = 'select u.id as id,firstname,lastname from mdl_role_assignments as a,mdl_user as u where contextid=' . $context->id .' and roleid=5 and a.userid=u.id;';
-		  $response=$DB->get_recordset_sql($query);	
-		  $this->content->text="";	  
-		  foreach($response as $result){
-		  		$this->content->text .= '<a href="/user/view.php?id=' . $result->id . '">' . htmlspecialchars($result->firstname) . "," . htmlspecialchars($result->lastname) . "</a></br>";
-		  }        
+        $this->content->text='<a target="_blank" href="/blocks/csvuserlist/download.php?courseid=' . $course->id . '">Download</a>';      
         //user/view.php?id=3&course=2
         //$this->content->text = "Hier werde ich alles Anzeigen !";
 		  /*
