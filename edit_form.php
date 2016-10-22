@@ -1,6 +1,6 @@
 <?php
 
-class block_vsuserlist_edit_form extends block_edit_form {
+class block_csvuserlist_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
 

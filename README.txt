@@ -1,3 +1,3 @@
-This moodle plugin can be added to course's to view the members.
-It only list the students !
+This moodle plugin can be added to course's to download the members.
+It only downloads the list of the students !
 

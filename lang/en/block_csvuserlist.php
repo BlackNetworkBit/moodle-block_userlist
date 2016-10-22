@@ -23,7 +23,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['blockname'] = 'Userlist';
-$string['vsuserlist:addinstance'] = 'Add a vsuserlist block';
-$string['vsuserlist:myaddinstance'] = 'Add a vsuserlist block to my moodle';
-$string['pluginname'] = 'Userlist';
+$string['blockname'] = 'Userlist-CSV';
+$string['csvuserlist:addinstance'] = 'Add a Userlist-CSV block';
+$string['csvuserlist:myaddinstance'] = 'Add a Userlist-CSV block to my moodle';
+$string['pluginname'] = 'Userlist-CSV';

@@ -1,6 +1,6 @@
 {
-    "name": "vincent/01_vsuserlist",
-    "description": "Teilnehmerliste",
+    "name": "vincent/01_csvuserlist",
+    "description": "Teilnehmerliste Download",
     "license": "GPLv3",
     "authors": [
         {
@@ -13,6 +13,6 @@
       "composer/installers": "~1.0"
     },
     "extra": {
-      "installer-name": "vsuserlist"
+      "installer-name": "csvsuserlist"
     }
 }
