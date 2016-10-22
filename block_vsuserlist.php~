@@ -36,18 +36,16 @@ class block_vsuserlist extends block_base {
         if ($this->content !== null) {
             return $this->content;
         }
-        $this->content = new stdClass();
-        $this->content->items = array();
-        $this->content->icons = array();
-        $this->content->footer = '';
 
         if (empty($this->instance)) {
             $this->content = '';
             return $this->content;
         }
-        $this->content->text = "Hier werde ich alles Anzeigen !";
-		  /*
 
+        $this->content = new stdClass();
+        $this->content->items = array();
+        $this->content->icons = array();
+        $this->content->footer = '';
 
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
@@ -66,8 +64,8 @@ class block_vsuserlist extends block_base {
 
         if (! empty($this->config->text)) {
             $this->content->text .= $this->config->text;
-        }*/
-		
+        }
+
         return $this->content;
     }
 
