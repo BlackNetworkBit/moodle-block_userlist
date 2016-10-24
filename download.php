@@ -8,13 +8,19 @@ $context= get_context_instance(CONTEXT_COURSE,$courseid);
 if(!has_capability('moodle/course:manageactivities',$context)){
 	die("Du bist kein Trainer.");
 }
-$query = 'select u.id as id,username,firstname,lastname,roleid from mdl_role_assignments as a,mdl_user as u where contextid=' . intval($context->id) .' and a.userid=u.id;';
-$response=$DB->get_recordset_sql($query);	
 $csvdata="Username,Firstname,Lastname,Login Method,First Login(course),Role\n";
-foreach($response as $result){
-	$csvdata .= $result->username . "," . $result->firstname . "," . $result->lastname . ",0,0," . $result->roleid . "\n";
+$data = get_enrolled_users($context,''); // get students
+foreach($data as $user){
+	$role="none";
+	if($roles=get_user_roles($context,$user->id)){ // read the user rights for the current
+		$role="";
+		foreach($roles as $r){
+			$role .=$r->name;		
+		}
+	}
+	$csvdata .= $user->username . ',' . $user->firstname . "," . $user->lastname . ',' . $user->auth . ",0," . $role . "\n";
 }
 header("Content-Type: text/csv");
 header("Content-Length: " . strlen($csvdata));
-echo $csvdata;
+echo $csvdata ;
 exit;
