@@ -50,36 +50,11 @@ class block_vsuserlist extends block_base {
             $this->content = '';
             return $this->content;
         }
-        $query = 'select u.id as id,firstname,lastname from mdl_role_assignments as a,mdl_user as u where contextid=' . $context->id .' and roleid=5 and a.userid=u.id;';
-		  $response=$DB->get_recordset_sql($query);	
-		  $this->content->text="";	  
-		  foreach($response as $result){
-		  		$this->content->text .= '<a href="/user/view.php?id=' . $result->id . '">' . htmlspecialchars($result->firstname) . "," . htmlspecialchars($result->lastname) . "</a></br>";
-		  }        
-        //user/view.php?id=3&course=2
-        //$this->content->text = "Hier werde ich alles Anzeigen !";
-		  /*
-
-
-        // user/index.php expect course context, so get one if page has module context.
-        $currentcontext = $this->page->context->get_course_context(false);
-
-        if (! empty($this->config->text)) {
-            $this->content->text = $this->config->text;
+        $this->content->text="";
+        $data = get_enrolled_users($context,'mod/assignment:submit'); // get students
+        foreach($data as $user){
+        		$this->content->text .= '<a href="/user/view.php?id=' . $user->id . '">' . htmlspecialchars($user->firstname) . "," . htmlspecialchars($user->lastname) . "</a></br>";
         }
-
-        $this->content = '';
-        if (empty($currentcontext)) {
-            return $this->content;
-        }
-        if ($this->page->course->id == SITEID) {
-            $this->content->text .= "site context";
-        }
-
-        if (! empty($this->config->text)) {
-            $this->content->text .= $this->config->text;
-        }*/
-		
         return $this->content;
     }
 
