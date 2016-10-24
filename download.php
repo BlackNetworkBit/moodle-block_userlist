@@ -15,7 +15,7 @@ foreach($data as $user){
 	if($roles=get_user_roles($context,$user->id)){ // read the user rights for the current
 		$role="";
 		foreach($roles as $r){
-			$role .=$r->name;		
+			$role .=$r->name . " ";		
 		}
 	}
 	$csvdata .= $user->username . ',' . $user->firstname . "," . $user->lastname . ',' . $user->auth . ",0," . $role . "\n";
