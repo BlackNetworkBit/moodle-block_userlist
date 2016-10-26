@@ -1,24 +1,36 @@
 <?php
 require_once('./../../config.php');
 require_once($CFG->libdir.'/moodlelib.php');
+require_once("$CFG->dirroot/enrol/locallib.php");
+require_once("$CFG->dirroot/enrol/users_forms.php");
+require_once("$CFG->dirroot/enrol/renderer.php");
+require_once("$CFG->dirroot/group/lib.php");
 global $OUTPUT, $DB,$USER;
 $courseid = required_param('courseid', PARAM_INT);
 require_login($courseid);
 $context= get_context_instance(CONTEXT_COURSE,$courseid);
 if(!has_capability('moodle/course:manageactivities',$context)){
-	die("Du bist kein Trainer.");
+	die(get_string('notrainer',"block_csvuserlist"));
 }
-$csvdata="Username,Firstname,Lastname,Login Method,First Login(course),Role\n";
-$data = get_enrolled_users($context,''); // get students
-foreach($data as $user){
-	$role="none";
-	if($roles=get_user_roles($context,$user->id)){ // read the user rights for the current
-		$role="";
-		foreach($roles as $r){
-			$role .=$r->name . " ";		
-		}
+$csvdata  =get_string("username","block_csvuserlist") . "," . get_string("firstname","block_csvuserlist") . "," . get_string("lastname","block_csvuserlist");
+$csvdata .="," . get_string("loginmethod","block_csvuserlist") . "," . get_string("firstlogin","block_csvuserlist") . "," . get_string("role","block_csvuserlist") . "\n";
+$coursedata=$DB->get_record('course', array('id'=>$courseid), '*', MUST_EXIST);
+$manager = new course_enrolment_manager($PAGE,$coursedata);
+$users = $manager->get_users_for_display($manager,"id","asc",0,99999);
+foreach ($users as $userid=>&$user) {
+	$data = array_values($user['enrolments'])[0];
+	$enrolment_date=array_values($manager->get_user_enrolments(intval($user['userid'])));
+	$enrolment_date=$enrolment_date[0]->timecreated;
+	$enrolment_method=$data['text'];
+	$username=$DB->get_record('user',array('id' =>intval($user['userid'])))->username;
+	$firstname=$user['picture']->user->firstname;
+	$lastname=$user['picture']->user->lastname;
+	$roles="";
+	foreach($user['roles'] as $r){
+		$roles .=$r['text'] . " ";
 	}
-	$csvdata .= $user->username . ',' . $user->firstname . "," . $user->lastname . ',' . $user->auth . ",0," . $role . "\n";
+	$csvdata .= $username . ',' . $firstname . "," . $lastname . ',' . $enrolment_method . "," . date("d.m.Y H:i:s",$enrolment_date) . "," . $roles . "\n";
+
 }
 header("Content-Type: text/csv");
 header("Content-Length: " . strlen($csvdata));
