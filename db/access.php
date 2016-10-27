@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * vsuserlist block caps.
+ * userlist block caps.
  *
- * @package   block_vsuserlist
- * @copyright Daniel Neis <danielneis@gmail.com>
+ * @package   block_userlist
+ * @copyright Vincent Schneider <xx>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,7 +28,7 @@ $capabilities = array(
 
     
 
-    'block/course/vsuserlist:addinstance' => array(
+    'block/course/userlist:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
 
         'captype' => 'write',

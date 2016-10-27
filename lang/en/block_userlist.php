@@ -16,14 +16,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_vsuserlist', language 'en'
+ * Strings for component 'block_userlist', language 'en'
  *
- * @package   block_vsuserlist
- * @copyright Daniel Neis <danielneis@gmail.com>
+ * @package   block_userlist
+ * @copyright Vincent Schneider <xx>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['blockstring'] = 'Block string';
-$string['vsuserlist:addinstance'] = 'Add a vsuserlist block';
-$string['vsuserlist:myaddinstance'] = 'Add a vsuserlist block to my moodle';
-$string['pluginname'] = 'userlist';
+$string['blockname'] = 'Userlist';
+$string['userlist:addinstance'] = 'Add a userlist block';
+$string['userlist:myaddinstance'] = 'Add a userlist block to my moodle';
+$string['pluginname'] = 'Userlist';
