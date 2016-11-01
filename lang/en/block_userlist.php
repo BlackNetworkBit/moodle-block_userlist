@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -22,7 +21,6 @@
  * @copyright Vincent Schneider <xx>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 $string['blockname'] = 'Userlist';
 $string['userlist:addinstance'] = 'Add a userlist block';
 $string['userlist:myaddinstance'] = 'Add a userlist block to my moodle';

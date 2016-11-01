@@ -26,20 +26,20 @@ defined('MOODLE_INTERNAL') || die();
 
 class block_userlist extends block_base {
 
-    function init() {
+    public function init() {
         $this->title = get_string('pluginname', 'block_userlist');
     }
 
-    function get_content() {
-        global $CFG, $USER,$DB;
+    public function get_content() {
+        global $CFG, $USER, $DB;
 
         if ($this->content !== null) {
             return $this->content;
         }
-        $course=$this->page->course;
-        $context= get_context_instance(CONTEXT_COURSE,$course->id);
-        if(!has_capability('moodle/course:manageactivities',$context)){
-        		return;
+        $course = $this->page->course;
+        $context = get_context_instance(CONTEXT_COURSE, $course->id);
+        if (!has_capability('moodle/course:manageactivities', $context)) {
+            return;
         }
         $this->content = new stdClass();
         $this->content->items = array();
@@ -50,36 +50,35 @@ class block_userlist extends block_base {
             $this->content = '';
             return $this->content;
         }
-        $this->content->text="";
-        $data = get_enrolled_users($context,'mod/assignment:submit'); // get students
-        foreach($data as $user){
-        		$this->content->text .= '<a href="/user/view.php?id=' . $user->id . '">' . htmlspecialchars($user->firstname) . "," . htmlspecialchars($user->lastname) . "</a></br>";
+        $this->content->text = "";
+        $data = get_enrolled_users($context, 'mod/assignment:submit'); // Get students.
+        foreach ($data as $user) {
+            $this->content->text .= '<a href="/user/view.php?id=' . $user->id . '">';
+            $this->content->text .= htmlspecialchars($user->firstname) . "," . htmlspecialchars($user->lastname) . "</a></br>";
         }
         return $this->content;
     }
 
-    // my moodle can only have SITEID and it's redundant here, so take it away
+    // My moodle can only have SITEID and it's redundant here, so take it away.
     public function applicable_formats() {
         return array('all' => false,
                      'site' => true,
                      'site-index' => true,
-                     'course-view' => true, 
+                     'course-view' => true,
                      'course-view-social' => false,
-                     'mod' => true, 
+                     'mod' => true,
                      'mod-quiz' => false);
     }
 
     public function instance_allow_multiple() {
           return true;
     }
-
-    function has_config() {return true;}
-
+    public function has_config() {
+        return true;
+    }
     public function cron() {
-            mtrace( "Hey, my cron script is running" );
-             
-                 // do something
-                  
-                      return true;
+        mtrace( "Hey, my cron script is running" );
+        // Do something.
+        return true;
     }
 }
